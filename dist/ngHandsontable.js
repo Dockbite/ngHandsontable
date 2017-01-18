@@ -1,11 +1,11 @@
 /**
- * ng-handsontable-wonderpatch 0.3.22
+ * ng-handsontable-wonderpatch 0.3.23
  * 
  * Copyright 2012-2015 Marcin Warpechowski
  * Copyright 2015 Handsoncode sp. z o.o. <hello@handsontable.com>
  * Licensed under the MIT license.
  * https://github.com/handsontable/ngHandsontable
- * Date: Wed Jan 18 2017 13:10:12 GMT+0100 (CET)
+ * Date: Wed Jan 18 2017 13:18:34 GMT+0100 (CET)
 */
 
 if (document.all && !document.addEventListener) { // IE 8 and lower
@@ -467,6 +467,10 @@ Handsontable.hooks.add('afterContextMenuShow', function() {
             $scope.htSettings.columns = [];
           }
           $scope.htSettings.columns.push(column);
+
+          if ($scope.htSettings.columns.length === $scope.colLength) {
+            settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
+          }
         };
         this.removeColumnSetting = function(column) {
           if ($scope.htSettings.columns.indexOf(column) > -1) {
@@ -480,6 +484,8 @@ Handsontable.hooks.add('afterContextMenuShow', function() {
           bindingsKeys;
 
         this.scope = settingFactory.trimScopeDefinitionAccordingToAttrs(settingFactory.getTableScopeDefinition(), tAttrs);
+        this.scope.colLength = '=';
+
         bindingsKeys = Object.keys(this.scope);
 
         angular.forEach(bindingsKeys, function(key) {
@@ -563,7 +569,6 @@ Handsontable.hooks.add('afterContextMenuShow', function() {
                 // If reference to data rows is not changed then only re-render table
                 if (scope.hotInstance.getSettings().data === newValue) {
                   settingFactory.renderHandsontable(scope.hotInstance);
-                  settingFactory.updateHandsontableSettings(scope.hotInstance, scope.htSettings);
                 } else {
                   scope.hotInstance.loadData(newValue);
                   scope.htSettings.data = newValue;

@@ -17,6 +17,10 @@
             $scope.htSettings.columns = [];
           }
           $scope.htSettings.columns.push(column);
+
+          if ($scope.htSettings.columns.length === $scope.colLength) {
+            settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
+          }
         };
         this.removeColumnSetting = function(column) {
           if ($scope.htSettings.columns.indexOf(column) > -1) {
@@ -30,6 +34,8 @@
           bindingsKeys;
 
         this.scope = settingFactory.trimScopeDefinitionAccordingToAttrs(settingFactory.getTableScopeDefinition(), tAttrs);
+        this.scope.colLength = '=';
+
         bindingsKeys = Object.keys(this.scope);
 
         angular.forEach(bindingsKeys, function(key) {
@@ -113,7 +119,6 @@
                 // If reference to data rows is not changed then only re-render table
                 if (scope.hotInstance.getSettings().data === newValue) {
                   settingFactory.renderHandsontable(scope.hotInstance);
-                  settingFactory.updateHandsontableSettings(scope.hotInstance, scope.htSettings);
                 } else {
                   scope.hotInstance.loadData(newValue);
                   scope.htSettings.data = newValue;
