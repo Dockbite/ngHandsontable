@@ -1,11 +1,11 @@
 /**
- * ng-handsontable-wonderpatch 0.3.21
+ * ng-handsontable-wonderpatch 0.3.22
  * 
  * Copyright 2012-2015 Marcin Warpechowski
  * Copyright 2015 Handsoncode sp. z o.o. <hello@handsontable.com>
  * Licensed under the MIT license.
  * https://github.com/handsontable/ngHandsontable
- * Date: Wed Jan 18 2017 09:57:53 GMT+0100 (CET)
+ * Date: Wed Jan 18 2017 13:10:12 GMT+0100 (CET)
 */
 
 if (document.all && !document.addEventListener) { // IE 8 and lower
