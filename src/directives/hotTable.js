@@ -17,7 +17,6 @@
             $scope.htSettings.columns = [];
           }
           $scope.htSettings.columns.push(column);
-          settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
         };
         this.removeColumnSetting = function(column) {
           if ($scope.htSettings.columns.indexOf(column) > -1) {
@@ -114,6 +113,7 @@
                 // If reference to data rows is not changed then only re-render table
                 if (scope.hotInstance.getSettings().data === newValue) {
                   settingFactory.renderHandsontable(scope.hotInstance);
+                  settingFactory.updateHandsontableSettings(scope.hotInstance, scope.htSettings);
                 } else {
                   scope.hotInstance.loadData(newValue);
                   scope.htSettings.data = newValue;
