@@ -1,11 +1,11 @@
 /**
- * ng-handsontable-wonderpatch 0.3.23
+ * ng-handsontable-wonderpatch 0.13.25
  * 
  * Copyright 2012-2015 Marcin Warpechowski
  * Copyright 2015 Handsoncode sp. z o.o. <hello@handsontable.com>
  * Licensed under the MIT license.
  * https://github.com/handsontable/ngHandsontable
- * Date: Wed Jan 18 2017 13:18:34 GMT+0100 (CET)
+ * Date: Wed Aug 30 2017 14:45:27 GMT+0200 (CEST)
 */
 
 if (document.all && !document.addEventListener) { // IE 8 and lower
@@ -317,6 +317,9 @@ Handsontable.hooks.add('afterContextMenuShow', function() {
       getAvailableSettings: function(hyphenateStyle) {
         var settings = Object.keys(Handsontable.DefaultSettings.prototype);
 
+        if (settings.indexOf('nestedRows') === -1) {
+          settings.push('nestedRows');
+        }
         if (settings.indexOf('contextMenuCopyPaste') === -1) {
           settings.push('contextMenuCopyPaste');
         }

@@ -216,6 +216,9 @@
       getAvailableSettings: function(hyphenateStyle) {
         var settings = Object.keys(Handsontable.DefaultSettings.prototype);
 
+        if (settings.indexOf('nestedRows') === -1) {
+          settings.push('nestedRows');
+        }
         if (settings.indexOf('contextMenuCopyPaste') === -1) {
           settings.push('contextMenuCopyPaste');
         }
