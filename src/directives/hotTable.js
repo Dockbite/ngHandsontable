@@ -25,7 +25,9 @@
         this.removeColumnSetting = function(column) {
           if ($scope.htSettings.columns.indexOf(column) > -1) {
             $scope.htSettings.columns.splice($scope.htSettings.columns.indexOf(column), 1);
-            settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
+            if ($scope.htSettings.columns.length === $scope.colLength || $scope.colLength === 0) {
+              settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
+            }
           }
         };
       }],

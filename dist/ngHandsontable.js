@@ -1,11 +1,11 @@
 /**
- * ng-handsontable-wonderpatch 0.13.25
+ * ng-handsontable-wonderpatch 0.13.26
  * 
  * Copyright 2012-2015 Marcin Warpechowski
  * Copyright 2015 Handsoncode sp. z o.o. <hello@handsontable.com>
  * Licensed under the MIT license.
  * https://github.com/handsontable/ngHandsontable
- * Date: Wed Aug 30 2017 14:45:27 GMT+0200 (CEST)
+ * Date: Tue Dec 03 2019 11:37:16 GMT+0100 (Central European Standard Time)
 */
 
 if (document.all && !document.addEventListener) { // IE 8 and lower
@@ -478,7 +478,9 @@ Handsontable.hooks.add('afterContextMenuShow', function() {
         this.removeColumnSetting = function(column) {
           if ($scope.htSettings.columns.indexOf(column) > -1) {
             $scope.htSettings.columns.splice($scope.htSettings.columns.indexOf(column), 1);
-            settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
+            if ($scope.htSettings.columns.length === $scope.colLength || $scope.colLength === 0) {
+              settingFactory.updateHandsontableSettings($scope.hotInstance, $scope.htSettings);
+            }
           }
         };
       }],
